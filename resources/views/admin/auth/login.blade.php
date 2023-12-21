@@ -13,6 +13,8 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-social/bootstrap-social.css') }}">
 
+    <link src="{{ asset('admin/assets/css/toastr.min.css') }}">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
@@ -111,6 +113,8 @@
     <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
 
+    <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+
     <!-- JS Libraies -->
 
     <!-- Page Specific JS File -->
@@ -118,6 +122,20 @@
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+
+
+    <!-- toastr notificações -->
+    <script>
+
+        toastr.options.progressBar = true;
+
+        @if($errors->any())
+            @foreach ( $errors->all() as $error )
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+
+    </script>
 </body>
 
 </html>
