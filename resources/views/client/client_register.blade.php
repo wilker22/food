@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Admin Login</title>
+    <title>Client Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -37,13 +37,13 @@
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="index.html" class="d-block auth-logo">
                                         <img src="{{ asset('backend/assets/images/logo-sm.svg') }}" alt=""
-                                            height="28"> <span class="logo-txt">Admin Login</span>
+                                            height="28"> <span class="logo-txt">Client Register</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
                                     <div class="text-center">
                                         <h5 class="mb-0">Welcome Back !</h5>
-                                        <p class="text-muted mt-2">Sign in to continue to Minia.</p>
+                                        <p class="text-muted mt-2">Sign in to continue to Client Register.</p>
                                     </div>
                                     <!--trantamento de erros-->
                                     @if ($errors->any())
@@ -61,8 +61,27 @@
                                     @endif
                                     <!--fim trata erros-->
 
-                                    <form class="mt-4 pt-2" method="POST" action="{{ route('admin.login_submit') }}">
+                                    <form class="mt-4 pt-2" method="POST"
+                                        action="{{ route('client.register.submit') }}">
                                         @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">Restaurant Name</label>
+                                            <input type="text" name="name" class="form-control" id="name"
+                                                placeholder="Enter Name">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" name="phone" class="form-control" id="phone"
+                                                placeholder="Enter Phone">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Address</label>
+                                            <input type="text" name="addres" class="form-control" id="addres"
+                                                placeholder="Enter Address">
+                                        </div>
+
                                         <div class="mb-3">
                                             <label class="form-label">E-mail</label>
                                             <input type="email" name="email" class="form-control" id="email"
@@ -100,7 +119,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-primary w-100 waves-effect waves-light"
-                                                type="submit">Log In</button>
+                                                type="submit">Register</button>
                                         </div>
                                     </form>
 
@@ -132,8 +151,8 @@
                                     </div>
 
                                     <div class="mt-5 text-center">
-                                        <p class="text-muted mb-0">Don't have an account ? <a href="auth-register.html"
-                                                class="text-primary fw-semibold"> Signup now
+                                        <p class="text-muted mb-0">Don't have an account ? <a
+                                                href="auth-register.html" class="text-primary fw-semibold"> Signup now
                                             </a> </p>
                                     </div>
                                 </div>

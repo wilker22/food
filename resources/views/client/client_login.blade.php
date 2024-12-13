@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Admin Login</title>
+    <title>Client Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -21,6 +21,7 @@
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 </head>
 
@@ -37,13 +38,13 @@
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="index.html" class="d-block auth-logo">
                                         <img src="{{ asset('backend/assets/images/logo-sm.svg') }}" alt=""
-                                            height="28"> <span class="logo-txt">Admin Login</span>
+                                            height="28"> <span class="logo-txt">Client Login</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
                                     <div class="text-center">
                                         <h5 class="mb-0">Welcome Back !</h5>
-                                        <p class="text-muted mt-2">Sign in to continue to Minia.</p>
+                                        <p class="text-muted mt-2">Sign in to continue to Client Login.</p>
                                     </div>
                                     <!--trantamento de erros-->
                                     @if ($errors->any())
@@ -61,7 +62,7 @@
                                     @endif
                                     <!--fim trata erros-->
 
-                                    <form class="mt-4 pt-2" method="POST" action="{{ route('admin.login_submit') }}">
+                                    <form class="mt-4 pt-2" method="POST" action="{{ route('client.login_submit') }}">
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label">E-mail</label>
@@ -292,6 +293,27 @@
     <!-- password addon init -->
     <script src="{{ asset('backend/assets/js/pages/pass-addon.init.js') }}"></script>
 
+    <!-- toaster -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
 </body>
 
 </html>
