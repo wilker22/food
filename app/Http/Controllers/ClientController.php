@@ -49,25 +49,24 @@ class ClientController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
-
         $check = $request->all();
-
         $data = [
             'email' => $check['email'],
-            'password' => $check['password']
+            'password' => $check['password'],
         ];
-
         if (Auth::guard('client')->attempt($data)) {
-            return redirect()->route('client.dashboard')->with('success', 'Login Successfully!');
+            return redirect()->route('client.dashboard')->with('success', 'Login Successfully');
         } else {
-            return redirect()->route('client.login')->with('error', 'Invalid Credentials!');
+            return redirect()->route('client.login')->with('error', 'Invalid Creadentials');
         }
     }
+    // End Method
 
     public function ClientDashboard()
     {
         return view('client.client_dashboard');
     }
+    // End Method
 }
