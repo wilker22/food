@@ -184,14 +184,14 @@
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                        src="{{ !empty($profileData->photo) ? url('upload/admin_images/' . $profileData->photo) : url('upload/no_image.jpg') }} "
+                        src="{{ !empty($profileData->photo) ? url('upload/client_images/' . $profileData->photo) : url('upload/no_image.jpg') }}"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ $profileData->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                    <a class="dropdown-item" href="{{ route('client.profile') }}"><i
                             class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
                     <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
                             class="mdi mdi-lock font-size-16 align-middle me-1"></i> Change Password</a>

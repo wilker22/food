@@ -64,9 +64,58 @@ class ClientController extends Controller
 
     // End Method
 
+    public function ClientProfile()
+    {
+        $id = Auth::guard('client')->id();
+        $profileData = Client::find($id);
+        //dd($profileData);
+        return view('client.client_profile', compact('profileData'));
+    }
+
+
+    public function ClientProfileStore(Request $request)
+    {
+        $id = Auth::guard('client')->id();
+        $data = Client::find($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+
+        $oldPhotoPath = $data->photo;
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('upload/client_images'), $filename);
+            $data->photo = $filename;
+
+            if ($oldPhotoPath && $oldPhotoPath !== $filename) {
+                $this->deleteOldImage($oldPhotoPath);
+            }
+        }
+        $data->save();
+
+        $notification = array(
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    private function deleteOldImage(string $oldPhotoPath)
+    {
+        $fullPath = public_path('upload/client_images/' . $oldPhotoPath);
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
+    }
+
     public function ClientDashboard()
     {
-        return view('client.client_dashboard');
+        return view('client.index');
     }
     // End Method
 
