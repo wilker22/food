@@ -3,16 +3,15 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, 'Index'])->name('index');
 
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.dashboard.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -45,6 +44,8 @@ Route::middleware('client')->group(function () {
     Route::get('/client/dashboard', [ClientController::class, 'ClientDashboard'])->name('client.dashboard');
     Route::get('/client/profile', [ClientController::class, 'ClientProfile'])->name('client.profile');
     Route::post('/client/profile/store', [ClientController::class, 'ClientProfileStore'])->name('client.profile.store');
+    Route::get('/client/change/password', [ClientController::class, 'ClientChangePassword'])->name('client.change.password');
+    Route::post('/client/password/update', [ClientController::class, 'ClientPasswordUpdate'])->name('client.password.update');
 });
 
 Route::get('/client/login', [ClientController::class, 'ClientLogin'])->name('client.login');

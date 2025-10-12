@@ -66,6 +66,8 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client query()
@@ -122,6 +124,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  */
-	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+	class User extends \Eloquent {}
 }
 
