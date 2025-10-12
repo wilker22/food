@@ -24,4 +24,3 @@ class Client
         return $next($request);
     }
 }
-

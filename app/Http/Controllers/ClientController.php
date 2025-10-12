@@ -24,24 +24,23 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:200'],
-            'email' => ['email', 'string', 'unique:clients']
+            'email' => ['required', 'string', 'unique:clients']
         ]);
 
         Client::insert([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'address'   => $request->address,
-            'password'  => Hash::make($request->password),
-            'role'      => 'client',
-            'status'    => '0',
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'client',
+            'status' => '0',
         ]);
 
-        $notification = [
-            'message' => 'Client Register Succesfully!',
+        $notification = array(
+            'message' => 'Client Register Successfully',
             'alert-type' => 'success'
-        ];
-
+        );
         return redirect()->route('client.login')->with($notification);
     }
 
@@ -62,11 +61,12 @@ class ClientController extends Controller
             return redirect()->route('client.login')->with('error', 'Invalid Creadentials');
         }
     }
+
     // End Method
 
     public function ClientDashboard()
     {
-        return view('client.index');
+        return view('client.client_dashboard');
     }
     // End Method
 
